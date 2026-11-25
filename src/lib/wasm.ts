@@ -1,1 +1,22 @@
-import init,{quote_tariff,split_payouts,transition_shipment,validate_rate_card}from'../../rust-core/pkg/mzigo_core';let boot:Promise<unknown>|undefined;export async function ready(){if(!boot)boot=init();await boot}export async function quote(c:unknown,i:unknown){await ready();return quote_tariff(c,i) as any}export async function split(i:unknown){await ready();return split_payouts(i) as any}export async function transition(a:string,b:string){await ready();return transition_shipment(a,b)}export async function validate(c:unknown){await ready();return validate_rate_card(c)}
+import { quote_tariff, split_payouts, transition_shipment, validate_rate_card } from '../../rust-core/pkg/mzigo_core';
+
+export async function ready(): Promise<void> {
+  // wasm-pack's bundler target initializes the module through its generated
+  // ES module loader; it does not expose a callable default init function.
+}
+
+export async function quote(card: unknown, input: unknown) {
+  return quote_tariff(card, input) as any;
+}
+
+export async function split(input: unknown) {
+  return split_payouts(input) as any;
+}
+
+export async function transition(current: string, next: string) {
+  return transition_shipment(current, next);
+}
+
+export async function validate(card: unknown) {
+  return validate_rate_card(card);
+}
