@@ -1,1 +1,37 @@
-{"name":"mzigo-ledger","version":"1.0.0","private":true,"type":"module","scripts":{"wasm:build":"bash scripts/build-wasm.sh","predev":"npm run wasm:build","dev":"vite --host 0.0.0.0","prebuild":"npm run wasm:build","build":"tsc -b && vite build","preview":"vite preview --host 0.0.0.0","test:rust":"cd rust-core && cargo test","cap:sync":"npm run build && cap sync android"},"dependencies":{"@capacitor/android":"^7.4.3","@capacitor/core":"^7.4.3","dexie":"^4.2.1","framer-motion":"^12.23.12","lucide-react":"^0.468.0","react":"^18.3.1","react-dom":"^18.3.1"},"devDependencies":{"@capacitor/cli":"^7.4.3","@tailwindcss/vite":"^4.1.17","@types/react":"^18.3.18","@types/react-dom":"^18.3.5","@vitejs/plugin-react":"^4.7.0","tailwindcss":"^4.1.17","typescript":"~5.7.3","vite":"^6.4.1"}}
+{
+  "name": "mzigo-ledger",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "wasm:build": "bash scripts/build-wasm.sh",
+    "predev": "npm run wasm:build",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "npm run wasm:build",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test:rust": "cd rust-core && cargo test",
+    "cap:sync": "npm run build && cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "dexie": "^4.2.1",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.7.0",
+    "tailwindcss": "^4.1.17",
+    "typescript": "~5.7.3",
+    "vite": "^6.4.1",
+    "vite-plugin-wasm": "^3.4.1",
+    "vite-plugin-top-level-await": "^1.4.4"
+  }
+}
