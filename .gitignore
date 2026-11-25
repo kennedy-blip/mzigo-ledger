@@ -1,0 +1,6 @@
+node_modules
+dist
+android
+rust-core/target
+rust-core/pkg
+.env
