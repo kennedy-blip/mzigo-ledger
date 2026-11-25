@@ -1,0 +1,33 @@
+name: Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['src/**','rust-core/**','package.json','capacitor.config.json','.github/workflows/android.yml']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20, cache: npm}
+      - uses: dtolnay/rust-toolchain@stable
+        with: {targets: wasm32-unknown-unknown}
+      - uses: cargo-bins/cargo-binstall@main
+      - run: cargo binstall wasm-pack --no-confirm
+      - run: npm install
+      - run: npm run build
+      - run: npx cap add android
+      - run: npx cap sync android
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '21'}
+      - uses: android-actions/setup-android@v3
+      - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: MzigoLedger-latest
+          name: MzigoLedger Android APK
+          files: android/app/build/outputs/apk/debug/app-debug.apk
+          fail_on_unmatched_files: true
