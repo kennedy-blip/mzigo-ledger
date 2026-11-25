@@ -22,7 +22,7 @@ npx cap add android
 npx cap sync android
 npx cap open android
 ```
-GitHub Actions builds and publishes a debug APK release named **MzigoLedger-latest** on pushes to main or manual workflow dispatch.
+GitHub Actions builds and publishes a debug APK release named **MzigoLedger-latest** on pushes to main or manual workflow dispatch. The Vite build uses the WASM and top-level-await plugins to bundle the generated Rust module.
 
 ## Vercel
 Import the repository at its root. Build command: `npm run build`; output: `dist`. The build script installs Rust/wasm-pack if absent and emits the WASM package before Vite bundles the app. Vercel headers specify `application/wasm` for WASM assets.
