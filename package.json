@@ -11,7 +11,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test:rust": "cd rust-core && cargo test",
-    "cap:sync": "npm run build && cap sync android"
+    "cap:sync": "npm run build && cap sync android",
+    "verify:wasm": "test -s rust-core/pkg/mzigo_core_bg.wasm"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
